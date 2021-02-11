@@ -1,0 +1,87 @@
+Mikołaj Korobczak 310115
+
+1. zsh destination: ~/.config/zsh/.zshrc
+a) alias ll='function _() {ls -lAFbhv $1 | less -XER};_'
+ls:
+l - używa formatu długiej listy
+A - nie wypisuje folderow "." oraz ".."
+F - dodaje do nazw plikow symbole identyfikujace te pliki (@ do symbolic links, * do plików wykonywalnych itp.)
+b - wypisuje białe znaki tak jakby były interpretowane w C np. tab jako \t
+h - pokazuje rozmiar plikow w łatwy do odczytania spósob (w MB GB itp zamiast w bajtach)
+V - uklada naturalnie wzgledem wielkosci liczb
+
+less:
+X - zapobiega czyszczeniu ekranu po wyjsciu z programu
+E - automatycznie zamyka program po dotarciu do EOF
+R - pozwala aby controlki koloru wewnatrz tekstu byly wyswietlane
+
+b) alias gentmp='echo "tmp-$(date "+%Y%m%d%H%M%S")"'
+
+c) alias genpwd='cat /dev/urandom | tr -dc 3-9A-HJ-NP-Z | head -c 32'
+
+2. grep(1)
+grep to program służący do wyszukiwania wzorców w zadanym tekście lub pliku. grep przyjmuje PATTERN zgodny z założeniami wyrażeń rególarnych, czyli wyrażeń w których oznaczenia ^ $ \ [] [^] . * mają specjalne znaczenia, Wersja egrep lub grep -E pozwala dodać do tej puli również znaki ? + { | ( ) (w podstawowej wersji właściwości tych znaków dostępne są jeżeli dodamy \ przed nimi np. \+ ). grep wyszukuje podanych wzorców w pliku podanym jako drugi argument funkcji, a jeżeli ten nie zostanie podany to rekurencyjny grep (rgrep lub grep - r) przeszuka folder w którym się znajdujemy, a zwykły będzie czytać tekst ze standardowego wejścia. grep umożliwia znajdować szukanych fraz w tekście, jak również całych linijek w których dane frazy występują, jak również te linie, które nie spełniają pewnych założeń.
+-i ignoruje wielkość liter
+-v wyszukuje te które nie pasują
+-o drukuje tylko pasujące słowa, nie pełne linie
+-n poprzedza wynik numerem lini, którą drukuje
+-c zapobiega wypisaniu znalezionych elementów zamiast tego wypisuje liczbę znalezionych elementów
+-w wyszukuje tylko podane słowo i nie pokazuje wyników w których podane słowo jest tylko podsłowem
+-B x pokazuje x liń przed wystąpieniem szukanej frazy
+-A x tak jak B z tym że linie po szukanej frazie
+-C x połączenie A i B
+-l wypisuje pliki które zawierają szukaną frazę (dla wywołania -r albo podobnych)
+
+Opis wyrażeń rególarnych w wersji podstawowej:
+^ oznacza występowanie na początku lini
+$ oznacza występowanie na końcu lini
+\ oznacza, że kolejny znak ma być interpretowany jako zwykły zna w przypadku tych funkcyjnych lub jako funkcyjny w przypadku tych zwykłych np \$ oznacza znak $, a \{ oznacza użycie { jako znaku specjalnego.
+[] oznacza że w danym miejscu ma wystąpić jeden ze znaków podanych w nawiasach. Znak - oznacza przedział np. [0-9] oznacza wystąpienie jednej z cyfr
+. Oznacza pojedynczy znak poza znakiem końca lini
+* oznacza zero lub więcej dowolnych znaków
+\| oznacza alternatywę dwóch sekwencji
+\{x\} oznacza wystąpienie danego znaku x razy
+\{x,y\} oznacza wystąpenie danego znaku od x do y razy
+\? oznacza conajwyżej jeden znak
+\+ oznacza conajmniej jeden znak
+\( \) służy do grupowania symboli do ich późniejszego wykorzytsania
+
+3. find(1)
+Polecenie find przeszukuje zadaną lokalizację w poszukiwaniu plików, katalogów itp. Dla przykładu 
+find .  pokaże wszystkie pliki i foldery w miesjcu w którym jesteśmy oraz podfoldery itd. find działa rekurencyjnie.
+find PATH -type x pozwala wypisać tylko pliki danego typu np. d to katalogi f to pliki
+find PATH -name x pozwala wypisać tylko ścieżki o podanej nazwie (opcja iname pozwala nierozróżniać wielkości liter). name przyjmuje wyrażenia regularne podobnie jak grep. Path też może być wyrażeniem regularnym
+find PATH -mmin lub -mdate pozwala szukać plików modyfikowanych w zadanym czasie. (podobnie cmin oraz amin)
+find PATH -size x pozwala szukać plików o zadanej wielkości
+find PATH -empty pozwala szukać putych plików
+find PATH -perm xyz wyszukuje plików o zadanym stopniu dostępu
+find PATH -maxdepth x pozwala ustalić maksymalne zagłębienie rekursji
+
+4. rename
+Polecenie rename zmienia nazwy plików. Najłatwiej pokazać to na przykładzie. 
+polecenie 
+foo .htm .html *.htm
+podmieni część .htm na .html w plikach które odpowiadają *.htm
+
+5. /* Zadanie robione we wspolpracy z Pawlem Matuszewskim */
+a) diff <(sort <(pacman -Qqs)) <(sort <(pacman -Qqo /usr/share/doc)) | grep "<" | sed "s/< //"
+b) diff <(sort <(ls /usr/share/doc)) <(sort <(pacman -Qqs)) | grep "<" | sed 's/< //' | sed 's/\(.*\)/pacman -Qo \/usr\/share\/doc\/\1/e'
+c) diff <(sort <(pacman -Qqo /usr/share/doc)) <(sort <(pacman -Qqo /usr/share/doc/*/[cC][hH][aA][nN][gG][eE]{[sS],[lL][oO][gG]}*)) | grep '<' | sed 's/< //'
+d) ls /usr/share/doc/*/[cC][hH][aA][nN][gG][eE]{[sS],[lL][oO][gG]}* | sed 's/^\(\/.*\)$/wc -l \1/e' | grep '^[01] .*' | sed 's/^[01] \(.*\)/\1/'
+e) grep -ic "bash" /usr/share/doc/bash/INTRO
+
+6. 
+a) sudo find / -type f -regex '.*\.so\(\.[0-9]+\)?$'
+b) sudo find / -type l | awk '{print "echo " $1 " $(readlink -f " $1 ") ;" | "/usr/bin/zsh"}' | grep '.*\.so\(\.[0-9]\+\)\?$' | sed 's/\(\/.*\) \(\/.*\)/\1/'
+c) sudo find / -type f -regex '.*\.so\(\.[0-9]+\)?$' -exec du {} + | awk '{count += 1; total += $1}END{print count, total, (total/count)}'
+d) sudo find / -type f -regex '.*\.so\(\.[0-9]+\)?$' | sed 's/\/[^/]*\.so.*//' | sort | uniq
+e) sudo find / -type l | awk '{print "echo " $1 " $(readlink -f " $1 ") ;" | "/usr/bin/zsh"}' | grep '.*\.so\(\.[0-9]\+\)\?$' | sed 's/\(\/.*\) \(\/.*\)/\1/' | sed 's/\/[^/]*\.so.*//' | sort | uniq
+
+7.
+a) find /usr/share/locale -regex '.*\.mo$' | sed 's/\/LC_MESSAGES\/.*\.mo//' | sed 's/\/usr\/share\/locale\///' | sort | uniq
+b) find /usr/share/locale -regex '.*\.mo$' | grep '.*dpkg.*\.mo' | sed 's/\/LC_MESSAGES\/.*\.mo//' | sed 's/\/usr\/share\/locale\///' | sort | uniq
+c) find /usr/share/locale/pl/LC_MESSAGES | sed 's/\/usr\/share\/locale\/pl\/LC_MESSAGES\///' | sed 's/\.mo//'
+d) for i in {1..8}; do echo "man$i: "; if [ $(ls /usr/share/man/man$i | wc -l) != 0 ]; then echo "en"; fi; ls /usr/share/man/*/man$i/*.$i.gz | sed 's/^\/usr\/share\/man\///' | sed 's/\/man.*\.gz//'| sort | uniq; done 2>/dev/null
+e) for i in {1..8}; do echo "man$i: "; ls /usr/share/man/pl/man$i; echo "\n"; done 2>/dev/null
+
+9.

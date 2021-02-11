@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+echo "Haha i tricked you and your $1 $2"

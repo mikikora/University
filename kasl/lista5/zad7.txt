@@ -1,0 +1,14 @@
+
+zadanie 7.
+socat - program, który tworzy narzędzie umożliwiające dwukierunkową komunikację między procesami. Program używa gniazda
+socat -d bez tej flagi program ten wypisuje tylko błędy. Z tą opcją dodatkowo ostrzeżenia
+socat -dd tak jak -d ale wypisuje jeszcze komunikaty
+socat -ddd tak jak -dd ale wypisuje jeszcze wiadomości informacyjne
+socat -dddd tak jak -ddd ale wypisuje jeszcze wiadomości debugowe
+socat -lu wydłuża czas trzymania wiadomości o błędach do kilku mikrosekund
+socat -lh dodaje nazwę hosta do przesyłanych wiadomości
+socat -t jak kanał przesyłowy dostanie wiadomość EOF to czeka jeszcze określony przez -t okres czasu (domyślnie 0.5s), a następnie kończy działanie
+socat -u wersja bez kierunkowa. Przysyłane wiadomości mogą być odczytane i wpisane przez dowolną stronę. Pierwszy adres jest do pisania, a drugi do czytania.
+seocat -U to samo co -u, tylko adresy do pisania i czytania są odwrotnie.
+
+

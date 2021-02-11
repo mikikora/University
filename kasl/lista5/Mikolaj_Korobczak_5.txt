@@ -1,0 +1,134 @@
+Mikołaj Korobczak lista 5
+
+Zadanie 1.
+stat - wyświetla status pliku lub systemu plików. Pozwala zobaczyć informacje takie jak:
+rozmiar, prawa dostępu, data utworzenia/dostępu/modyfikacji, liczba dowiązań itd.
+flagi:
+-f pozwala podejrzeć system plików zamiast pliku
+-c pozwala za pomocą wielu opcji postaci "%*" gdzie * to litera przeglądać szukane opcje
+
+ls - pokazuje listę plików w danym kalatlogu. Pozwala wypisać obok każdego pliku pewne podstawowe dane takie jak prawa dostępu.
+Najczęściej używana do tego flaga to -a które pozwala przejżeć najważniejsze informacje takie jak prawa dostępu, właściciela itp.
+Program ten nie pozwala jednak wyszukać szczegółowych informacji o pliku.
+
+realpath - rozwija pełny adres zadanego pliku/katalogu w systemie i drukuje na ekran. Program rozwija linki symboliczne.
+Program pozwala też sprawdzać jaka byłaby lokalizacja pliku, który nie musi istnieć (zapobiega temu opcja -e).
+
+
+zadanie 2.
+
+hostname(5) = /etc/hostname - plik w którym zapisany jest string ustawiony w trakcie instalacji systemu, który jest nazwą lokalnego systemu.
+machine-id(5) = /etc/machine-id - plik, w którym zapisany jest string w postaci liczby hexadecymalnej oznaczający jednoznacznie numer maszyny, na której jest system zapisany. Numer nie zmienia się przy kolejnych bootach. Jest wygenerowany losowo w pierwszej inicjalizacji systemu. Jest używany również jako identyfikator hosta.
+os-release(5) = /etc/os-release and /usr/lib/os-release - plik, w którym zapiasne są podstawowe informacje o systemie takie jak nazwa systemu, wersja, ID, adresy stron systemu/supportu itp.
+
+hostname(1) - wyświetla ustawiony w systemie hostname (w pliku hostname(5)).
+hostnamectl(1) - program pozwalający wyświetlić i edytować informacje o hoście takie jak nazwa, ikona itp.
+uuid(1) - program , który pozwala obsłużyć kody uuid czyli numery, które dość łatwo wygenerować lokalnie, ale w założeniu są dość trudne do wygenerowania ponownie, co daje możliwość identyfikowania użądzeń w sieci za ich pomocą.
+uuidgen(1) - program do generowania numerów uuid. Pozwala używać różnych algorytmów haszujących.
+dbus-uuidgen(1) - powala przeczytać uuid nadany danej maszynie. Używa się go do upewnienia się, że maszyna ma taki adres nadany i że jest on inny od innych maszyn. Nie zmienia domyślnie adresu uuid. Jeżeli uruchomiony bez argymentów zadziała tak jak uuidgen(1).
+uname(1) - drukuje na ekran informacje o systemie.
+lsb_release(1) - drukuje na ekran podstawowe informacje o systemie, dystrybucji, wersji itp.
+
+
+zadanie 3.
+lsof(8) - wypisuje listę wszystkich plików otwartych w danym momencie przez wszystkie/wybrane aktualnie działające procesy.
+przykłady użycia:
+
+lsof /ścieżka/dostępu/do/pliku
+pokaże wszystkie procesy, które mają ten plik otwarty
+
+lsof -u użytkownik
+pokazuje wszystkie pliki otwarte przez procesy użytkownika użytkownik
+
+lsof -p nr_proces
+pokazuje wszystkie pliki otwarte przez proces o numerze nr_proces.
+
+fuser(1) - identyfikuje proces, który używa dany w argumencie plik lub system plików
+fuser -v /
+wypisuje identyfikatory programów, które używają czegoś w /
+
+
+zadanie 4.
+strace - śledzi syscalle i sygnały
+sposób użycia: strace program np.
+strace ls -al
+pokaże wynik wykonania programu na standardowym wyjściu, natomiast na standardowym wyjściu błędu wypisaną zostane wszystkie syscalle jakie program wywołuje, oraz wszystkie sygnały jakie otrzymuje.
+opcje:
+-c pozwala wypisać w liście wszystkie syscalle razem z takimi danymi jak użycie czasu, pamięci itp.
+-e SYG pozwala śledzić sygnał SYG
+-t wypisuje czas każdego wywołania
+-o PLIK pozwala wypisać wynik strace do pliku PLIK
+-r wyświetla czas jaki minął od początku danego wywołania (może różnić się od tego -t)
+-f pozwala śledzić również syscalle i sygnały dzieci podanego procesu
+
+program ten jest używany przedewszystkim do debugowania programów. Przykładem mogą być programy, które nie działają, ponieważ nie mogą otworzyć jakiegoś pliku, lub zapętlają się w jakiś sposób.
+
+
+zadanie 5.
+
+skrypt:
+
+FIFO="/tmp/mylog.fifo"
+function foo() {
+    if ! [[ -e $FIFO ]]
+    then
+        mkfifo $FIFO
+    fi
+    while true
+    do
+        cat $FIFO
+        echo $(date "+%Y%m%d%H%M%S" | sed "s/\([0-9]\{4\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{2\}\)/\1-\2-\3 \4:\5:\6/")
+        echo
+
+    done
+}
+foo
+
+przykładowe użycie to wywołanie w innym terminalu np. ls >> /tmp/mylog.fifo
+
+zadanie 6.
+lsof z opcją -U drukuje listę wszystkich gniazd otwartych w systemie
+
+netstat:
+netstat -ie pozwala wyświetlić wszystkie interface'y sieciowe aktywne na komputerze
+netstat -r pozwala wyświetlić route table
+netstat -a drukuje wszystkie aktywne połączenia
+netstat -at wyświetli wszystkie aktywne gniazda protokołu tcp
+netstat -au to samo co -at tylko zamiast tcp jest udp
+netstat -l(t/u) wyświetla gniazdy w stanie listening podobnie -e(t/u) w stanie established
+netstat -p pozwala wyświetlić do którego procesu przynależy dane gniazdo
+netstat -n wyśiwetla adres ip zamiast użytkownika
+Jeżeli chcemy poszukać jakie gniazda otworzył dany proces najłatwiej to zrobić za pomocą polecenia grep
+netstat -nap | grep "process_name"
+
+ss:
+ss wyświetli wszystkie aktywne gniazda
+aby wyświetlić gniazda listening należy użyć opcji -l
+ss -t wyświetla gniazda tcp
+ss -p wyświelta proces, do którego należy dane gniazdo
+ss -o pozwala dodawać opcje takie jak czas itp.
+ss -a wyświetla wszystkie gniazda bez względu na status
+ss -s pokazuje statystyki gniazd
+ss status established pozwala wyświetlić tylko gniazda established.
+
+
+zadanie 10.
+dbus to mechanizm komunikacji między procesami. Obsługiwany jest przez deamona odpalanego przy starcie systemu. deamon ten nasłuchuje przedewszystkim wydarzeń związanych ze sprzętem takich jak podłączenie USB, podłączenie ładowarki itp.
+dbus-monitor to program debufowy służący do odczytywania informacji przesyłanych dbusem.
+Przykładowy sygnał odczytany przez dbus-monitor:
+
+method call time=1586530601.509239 sender=:1.16 -> destination=:1.17 serial=139 path=/org/freedesktop/secrets; interface=org.freedesktop.Secret.Service; member=SearchItems
+   array [
+      dict entry(
+         string "account"
+         string "https://api.github.com"
+      )
+      dict entry(
+         string "service"
+         string "atom-github"
+      )
+      dict entry(
+         string "xdg:schema"
+         string "org.freedesktop.Secret.Generic"
+      )
+   ]

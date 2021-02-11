@@ -1,0 +1,6 @@
+/home/mikolaj/obiektowe/lista2/zadanie4/zadanie4/zadanie4/bin/Debug/zadanie4.exe
+/home/mikolaj/obiektowe/lista2/zadanie4/zadanie4/zadanie4/bin/Debug/zadanie4.pdb
+/home/mikolaj/obiektowe/lista2/zadanie4/zadanie4/zadanie4/obj/x86/Debug/zadanie4.csprojAssemblyReference.cache
+/home/mikolaj/obiektowe/lista2/zadanie4/zadanie4/zadanie4/obj/x86/Debug/zadanie4.csproj.CoreCompileInputs.cache
+/home/mikolaj/obiektowe/lista2/zadanie4/zadanie4/zadanie4/obj/x86/Debug/zadanie4.exe
+/home/mikolaj/obiektowe/lista2/zadanie4/zadanie4/zadanie4/obj/x86/Debug/zadanie4.pdb

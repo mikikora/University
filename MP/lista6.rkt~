@@ -1,0 +1,107 @@
+#lang racket
+
+;; struktury z których budujemy drzewa binarne
+
+(struct node (v l r) #:transparent)
+(struct leaf () #:transparent)
+
+;; predykat: czy dana wartość jest drzewem binarnym?
+
+(define (tree? t)
+  (match t
+    [(leaf) true]
+    ; wzorzec _ dopasowuje się do każdej wartości
+    [(node _ l r) (and (tree? l) (tree? r))]
+    ; inaczej niż w (cond ...), jeśli żaden wzorzec się nie dopasował, match kończy się błędem
+    [_ false]))
+
+;; przykładowe użycie dopasowania wzorca
+
+(define (insert-bst v t)
+  (match t
+    [(leaf) (node v (leaf) (leaf))]
+    [(node w l r)
+     (if (< v w)
+         (node w (insert-bst v l) r)
+         (node w l (insert-bst v r)))]))
+
+
+;;zadanie 2
+(define (paths t)
+  (match t
+      [(node v l r) (map (lambda (l) (append (list v) l)) (append (paths l) (paths r)))]
+    [(leaf) (list (list '*))]))
+
+;; definicja wyrażeń arytmetycznych
+
+(struct const (val) #:transparent)
+(struct op (symb l r) #:transparent)
+
+(define (expr? e)
+  (match e
+    [(const n) (number? n)]
+    [(op s l r) (and (member s '(+ *))
+                     (expr? l)
+                     (expr? r))]
+    [_ false]))
+
+;; przykładowe wyrażenie
+
+(define e1 (op '* (op '+ (const 2) (const 2))
+                  (const 2)))
+
+;; ewaluator wyrażeń arytmetycznych
+
+(define (eval e)
+  (match e
+    [(const n) n]
+    [(op '+ l r) (+ (eval l) (eval r))]
+    [(op '* l r) (* (eval l) (eval r))]))
+
+;; kompilator wyrażeń arytmetycznych do odwrotnej notacji polskiej
+
+(define (to-rpn e)
+  (match e
+    [(const n) (list n)]
+    [(op s l r) (append (to-rpn l)
+                        (to-rpn r)
+                        (list s))]))
+
+;;zadanie 3
+(define (+or* wz)
+  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

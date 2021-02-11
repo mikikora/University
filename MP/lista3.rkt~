@@ -1,0 +1,139 @@
+#lang racket
+
+(define (squere x)
+  (* x x))
+
+( define ( display-point p )
+( display "(")
+( display ( point-x p ) )
+( display ", ")
+( display ( point-y p ) )
+( display ")") )
+
+( define ( display-vect v )
+( display "[")
+( display-point ( vect-begin v ) )
+( display ", ")
+( display-point ( vect-end v ) )
+( display "]") )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;punkty
+(define (make-point x y)
+  (cons x y))
+
+(define (point-x p)
+  (car p))
+
+(define (point-y p)
+  (cdr p))
+
+(define (point? p)
+  (and (cons? p)
+       (number? (car p))
+       (number? (cdr p))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;wektory
+
+(define (make-vect begin end)
+  (cons begin end))
+
+(define (vect? x)
+  (and (cons? x)
+       (point? (car x))
+       (point? (cdr x))))
+
+(define (vect-begin x)
+  (car x))
+
+(define (vect-end x)
+  (cdr x))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;funckje dla wektorow
+
+(define (vect-lenght v)
+  (sqrt (+ (squere (- (point-x (vect-begin v))
+                      (point-x (vect-end v))))
+           (squere (- (point-y (vect-begin v))
+                      (point-y (vect-end v)))))))
+
+(define (vect-scale v k)
+  (make-vect (vect-begin v)
+             (make-point
+              (* k (point-x (vect-end v)))
+              (* k (point-y (vect-end v))))))
+
+(define (vect-translate v p)
+  (let ([p-x (- (point-x (vect-end v)) (point-x (vect-begin v)))]
+        [p-y (- (point-y (vect-end v)) (point-y (vect-begin v)))])
+    (make-vect p
+               (make-point
+                (+ p-x (point-x p))
+                (+ p-y (point-y p))))))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;listy
+
+(define (list? xs)
+  (or (null? xs)
+      (and (cons? xs)
+           (list? (cdr xs)))))
+
+;; obliczanie długości listy, wersje rekurencyjna i iteracyjna
+(define (length xs)
+  (if (null? xs)
+      0
+      (+ 1 (length (cdr xs)))))
+
+(define (length-it xs)
+  (define (iter xs n)
+    (if (null? xs)
+        n
+        (iter (cdr xs) (+ n 1))))
+  (iter xs 0))
+
+;; konkatenacja (łączenie) pary list
+(define (append as bs)
+  (if (null? as)
+      bs
+      (cons (car as)
+            (append (cdr as) bs))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;zadanie 3
+;;reverse
+
+(define (reverse ls)
+  (if (null? ls)
+      null
+      (append (reverse (cdr ls)) (list(car ls)))))
+
+(define (reverse-it ls)
+  (define (iter l l1)
+    (if (null? l)
+        l1
+        (iter (cdr l) (cons (car l) l1))))
+  (iter ls null))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;zadanie 4
+;;insert
+
+(define (insert xs n)
+  (if (null? xs)
+      (list n)
+      (if (>= (car xs) n)
+          (cons n xs)
+          (cons (car xs) (insert (cdr xs) n)))))
+
+
+
+
+
+
+
+
+
+
+

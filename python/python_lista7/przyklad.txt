@@ -1,0 +1,6 @@
+Mamy tutaj przykład jakiegoś tekstu z polskimi litermi ąćż oraz ich różną wielkością ĄŚć
+W tekście tym występują przecinki, przy, słowach.
+Najdłuższe słowa w tym tekście to:
+Niezdecydowanieciekawy, ABCDabcdoisutormsklido, ąąąąąąąąąąąąąąąąąąąąąą
+Według ułożenia leksykograficznego ostatnie z tych słów jest ostatnie w alfabacie a drugie jest pierwsze.
+To koniec tego pliku. :)

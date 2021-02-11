@@ -1,0 +1,55 @@
+zadanie 1
+fun x -> 0 + x;;
+let f (g: 'a -> 'b) (h: 'c -> 'a) = fun (x: 'c) -> g (h x);;
+fun x y -> x;;
+fun a b -> if a > b then a else b;;
+nie potrafię zdefiniować nic o typie 'a
+
+zadanie 2
+let rec f = fun x -> f x;;
+
+zadanie 3
+let hd s = s 0;;
+let tl s = fun x -> s (x+1)
+let add s x = fun y -> (s y) + x
+let map s f = fun x -> f (s x);;
+let map2 f s t = fun x -> f (s x) (t x);;
+let replace s n a = fun x -> if x mod n = 0 then a else s x;;
+let take s n = fun x -> s (x*n);;
+let rec tabulate ?(a=0) b s = if a = b then [s a] else (s a) :: (tabulate ~a: (a+1) b s);;
+
+zadanie 4
+let ctrue = fun (x: 'a) (y: 'a) -> x;;
+let cfalse = fun (x: 'a) (y: 'a) -> y;;
+let cand (x: 'a -> 'a -> 'a) (y: 'a -> 'a -> 'a) (a: 'a) (b: 'a) = x (y a b) b;;
+let cor (x: 'a -> 'a -> 'a) (y: 'a -> 'a -> 'a) (a: 'a) (b: 'a) = x a (y a b);;
+let cbool_of_bool = fun (x: bool) -> if x then ctrue else cfalse;;
+let bool_of_cbool = fun (x: bool -> bool -> bool) -> x true false;;
+
+zadanie 5
+let zero (f: 'a -> 'a) (x: 'a) = x;;
+let succ (n: ('a -> 'a) -> 'a -> 'a) (f: 'a -> 'a) (x: 'a) = n f (f x);;
+let add (n: ('a -> 'a) -> 'a -> 'a) (m: ('a -> 'a) -> 'a -> 'a) (f: 'a -> 'a) (x: 'a) = n f (m f x);;
+let mult (n: ('a -> 'a) -> 'a -> 'a) (m: ('a -> 'a) -> 'a -> 'a) (f: 'a -> 'a) (x: 'a) = n (m f) x;;
+let is_zero (n: ('a -> 'a) -> 'a -> 'a) (x: 'a) (y: 'a) = n (fun _ -> y) x;; 
+let rec cnum_of_int (x: int) (f: 'a -> 'a) (y: 'a) = if x = 0 then y else cnum_of_int (x-1) f (f y);;
+let int_of_cnum (n: (int -> int) -> int -> int) = n (fun x -> x + 1) 0;;
+
+zadanie 6
+type cbool = { cbool : 'a. 'a -> 'a -> 'a };;
+let ctrue = { cbool = fun x y -> x };;
+let cfalse = { cbool = fun x y -> y };;
+let cand x y = { cbool = fun a b -> x.cbool (y.cbool a b) b };;
+let cor x y = { cbool = fun a b -> x.cbool a (y.cbool a b) };;
+let cbool_of_bool = fun (x: bool) -> if x then ctrue else cfalse;;
+let bool_of_cbool x = x.cbool true false;;
+
+type cnum = { cnum : 'a. ('a -> 'a) -> 'a -> 'a };;
+let zero = { cnum = fun f x -> x };;
+let succ n = { cnum = fun f x -> n.cnum f (f x) };;
+let add n m = { cnum = fun f x -> n.cnum f (m.cnum f x) };;
+let is_zero n = { cbool = fun x y -> n.cnum (fun _ -> y) x };;
+let rec cnum_of_int (x: int) = if x = 0 then zero else succ (cnum_of_int (x-1));;
+let int_of_cnum n = n.cnum (fun x -> x + 1) 0;;
+
+

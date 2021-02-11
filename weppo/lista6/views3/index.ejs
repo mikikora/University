@@ -1,0 +1,20 @@
+<!-- views3/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  Got or created cookie <%=cookieValue%><br>
+  <form action="/delete-cookie" method="get">
+    <button type="submit">Delete cookie</button>
+  </form>This session was visited <%=views%> times.
+  <form action="/delete-views" method="get">
+    <button type="submit">Reset views counter</button>
+  </form>
+</body>
+</html>

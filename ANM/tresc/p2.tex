@@ -1,0 +1,33 @@
+\documentclass[11pt, wide]{mwart}
+
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\begin{document}
+\noindent Wielomian $I_n \in \prod_n$ interpolujący funkcję $f$ w węzłach
+\begin{equation*}
+t_{n+1,k} = \cos \frac{2k+1}{2n+2} \pi \quad (k = 0,1,\dots ,n)
+\end{equation*}
+można zapisać w postaci
+\begin{equation*}
+I_n(x) = \frac{2}{n+1} \sum_{i=0}^n{}^{'} \Big( \sum_{j=0}^n f(t_{n+1,j})T_i(t_{n+1, j}) \Big) T_i(x),
+\end{equation*}
+a wielomian $J_n$ o własności $J_n(u_{n-1,k}) = f(u_{n-1,k}) \quad (k = 0, 1,\dots, n),$ gdzie $u_{n-1, k} = \cos (k\pi / n), \quad (k = 0, 1,\dots, n),$ można zapisać wzorem
+\begin{equation*}
+J_n(x) = \frac{2}{n} \sum_{j=0}^n {}^{''} \Big( \sum_{k=0}^n {}^{''} f(u_{n-1, k}) T_k(u_{n-1, j}) \Big) T_j(x).
+\end{equation*}
+Wielomian $K_n \in \prod_n$ podany wzorem
+\begin{equation*}
+K_n(x) = \frac{2}{n+1} \sum_{j=0}^n {}^{'} \Big( \sum_{k=0}^{n+1} {}^{''} f(u_{nk})T_k(u_{nj}) \Big) T_j(x)
+\end{equation*}
+jest $n$-tym wielomianym optymalnym w sensie aproksymacji jednostajnej dla funkcji $f$ na zbiorze
+\begin{equation*}
+\{ u_{n0}, u_{n1}, \dots, u_{n, n+1} \} ,
+\end{equation*} 
+gdzie $u_{nk} = \cos (k\pi /(n+1)) \quad (k=0, 1, \dots, n+1).$ Dla wybranych funkcji $f$ i wartości $n$ obliczyć (w przybliżeniu) błędy aproksymacji jednostajnej funkcji $f$ za pomocą $I_n,$ $J_n,$ $K_n,$ w przedziale $[-1,1].$ \\
+\textit{Uwaga.} Symbol $ \sum {} ^ {'}$ oznacza sumę, której pierwszy składnik należy podzielić przez 2, a $\sum {}^{''}$ --- sumę, której pierwszy i ostatni składnik należy podzielić przez 2.
+
+\end{document}

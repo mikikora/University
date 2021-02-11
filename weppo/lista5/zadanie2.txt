@@ -1,0 +1,5 @@
+Deklaruję to zadanie. Potrafię je wykonać.
+Certyfikat tworzę poleceniami
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem 
+openssl pkcs12 -export -out certificate.pfx -inkey key.pem -in cert.pem
+następnie używam kodu z wykłądu.

@@ -1,0 +1,46 @@
+\documentclass[11pt, wide]{mwart}
+
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumerate}
+
+\begin{document}
+
+Współrzędne planety na orbicie eliptycznej w czasie $t$ można obliczyć wzorem
+\begin{equation*}
+(a(\cos x - e), a \sqrt[]{1-e^2}\sin x),
+\end{equation*}
+gdzie $a$ jest półosią wielką elipsy, natomiast $e$ to mimośród orbity. Kąt $x$, zwany anomalią mimośrodową, \\
+możemy obliczyć z równania Keplera,
+
+\begin{equation*}
+x - e \sin x = M \qquad (0 < |e| < 1),
+\end{equation*}
+gdzie $M$ to anomalia średnia, która jest dana wzorem $ M = 2 \pi t/T,$ przy czym $T$ oznacza okres orbitalny. \\
+
+\begin{enumerate}[a)]
+\item Pokaż, że dla każdych $e$, $M$ rozwiązanie $x = \alpha$ spełnia 
+$M - |e| \leq \alpha \leq M + |e|$. Czy można poprawić to oszacowanie?
+\item Rozwiąż równanie Keplera metodą bisekcji wykorzystując oszacowanie z poprzedniego podpunktu.
+\item  Zaprogramuj prostą metodę iteracyjną,
+\begin{equation*}
+x_{n+1} = e \sin x_n + M, \quad x_0 = 0.
+\end{equation*}
+\item Zastosuj metodę Newtona do równania Keplera. Jak wybrać przybliżenie startowe?
+
+\end{enumerate}
+Wykonaj testy i porównaj zbieżność metod (b) oraz (c). Dane dotyczące planet Układu Słonecznego znajdziesz w Internecie. Jak dobrać przybliżenie startowe?
+\\
+\\
+\textbf{Literatura:}
+\begin{enumerate}[I.]
+\item R. Esmaelzadeh, H. Ghadiri, Appropriate Starter for Solving the Kepler’s Equation, International Journal
+of Computer Applications 89 (2014), 31–38.
+\item G. R. Smith, A simple, efficient starting value for the iterative solution of Kepler’s equation, Celestial
+Mechanics 19 (1979), 163–166.
+
+\end{enumerate}
+
+\end{document}

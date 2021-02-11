@@ -1,0 +1,71 @@
+Mikołaj Korobczak 310115
+Kurs administrowania systemem Linux
+
+zadanie 1
+a) sudo useradd -m -s /bin/zsh jantest
+sudo passwd jantest
+b) nie ma w moim systemie grup odpowiadających za możliwość dostępu do urządzeń.
+c) dodałem do pliku /etc/sudoers linię
+jantest ALL=(root) /usr/bin/ip *
+d) groupadd projekt
+gpasswd -a jantest projekt
+gpasswd -a mikolaj projekt
+touch opis.txt
+chgrp projekt opis.txt
+chmod 700 opis.txt
+sudo -u jantest echo "hello world" > opis.txt
+echo "well hello there" >> opis.txt
+Wszystko zadziałało, a w pliku opis.txt powstały dwie linie zawierające podane stringi
+e)
+groups mikolaj
+należę do grup wheel i projekt
+groups jantest
+jantest należy do grup projekt i jantest
+f)
+dodając do pliku /etc/sudoers lini jantest=ALL (mikolaj) /usr/bin/whoami *
+pozwala jantest uruchomić whoami za pomocą
+sudo -u mikolaj whoami
+i dostać odpowiedź
+mikolaj
+g)
+
+
+Zadanie 2
+a) systemctl start sshd
+pozwoliło mi łączyć się za pomocą ssh localhost z moim komputerem przez ssh.
+b) ssh-keygen wygenerowało klucz. Nie ma co za bardzo skomentować w tym podpunkcie
+c) ssh-copy-id -i ~/.ssh/dojana jantest@localhost
+dodało klucz dojana. Teraz za pomocą
+ssh -i ~/.ssh/dojana jantest@localhost
+mogę się logować na konto jantest używając tylko hasła mojego klucza
+d) eval `ssh-agent`
+ssh-add -t 3600 ~/.ssh/dojana
+e)
+sudo passwd -l jantest
+blokuje hasło. Próba zalogowania się do jantest przy pomocy ssh jantest@localhost i podanie hasła powoduje permission denied.
+Próba zalogowania się przez
+ssh -i ~/.ssh/dojana jantest@localhost i po podaniu hasła do klucza pozwala mi wejść na konto jantest.
+f) sudo -u jantest pozwala mi włączyć konto jantesta i działać w nim mimo, że jego hasło jest zablokowane.
+g) sudo passwd -u jantest
+sudo chage -E0 jantest
+sprawia, że konto jantest staje się przeterminowane i nie można się zalogować ani przez hasło ani ssh.
+h) sudo chage -e-1 jantest
+odblokowuje konto jantest
+sudo usermod -s /bin/false jantest
+rzeczywiście nie mogę się zalogować na konto przez ssh ale mogę użyć
+sudo -u jantest bash
+i wtedy mogę obsługiwać konto jantest
+nologin służy jako sztuczna powłoka, która w momencie odpalenia wysyła wiadomość, że nie da się zalogować na dane konto i kończy działanie z wartością 0.
+Jest to lepsze rozwiązanie niż /bin/false poniważ pozwala przekazać inforamcję użytkownikowi, który próbuje się zalogować co jest nie tak. Poza tym /bin/false kończy się informacją o błędzie.
+i) W pliku /etc/ssh/sshd_config można zmienić PermitRootLogin na wartość 'no' i wtedy zabraniamy logowania się na to konto przez ssh. Nadal można jednak logować się na roota przez konsolę.
+
+Zadanie 3
+Zadanie to zrobiłem na dwóch maszynch wirtualnych postawionych jako debian 64bit. Poleceniem
+ip link
+mogłem zauważyć, żę interfejs sieciowy enp0s3 jest tym, przez który będę się łączył. Trzeba było najpierw go włączyć
+sudo ip link set up dev enp0s3
+a następnie nadać adres ip
+sudo ip addr add 192.168.0.1/18
+(drugiej maszynie nadałem 192.168.0.2/18). W tym momencie poleceniem
+ping 192.168.0.2
+mogłem sprawdzić, że jestem połączony.

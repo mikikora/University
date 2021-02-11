@@ -1,0 +1,19 @@
+Po uruchomieniu polecenia top zostaje nam przedstawiona lista aktywnych proceswów jak i pewne informacje u góry ekranu.
+Przez naciśnięcie polecenia h możemy otworzyć pomoc aby dowiedzieć się co możemy używać w tym programie.
+Postanowiłem wybrać kilka przydatnych
+q - wyjście z programu (każdy kto się zetknął z vimem wie, że trzeba takie rzeczy wiedzieć)
+za pomocą klawiszy m, t, l można zmieniać co wyświetlamy w górym panelu oraz sposób wyświetlania
+ja najbardziel jubię mieć wszystko włączone z dokładnymi danymi tylko m w postaci pasków
+
+za pomocą z można przełączać się miedzy wersją kolorystyczną lub mono. Jak kto lubi, ja wolę kolory
+Poleceniem L można wyszukiwać szukanych procesów i przełączać kolejne znalezione za pomocą &
+poleceniami k oraz r można zabijać lub zmieniać niceness wybranych procesów
+Przyciskami b i B można przełączać się miedzy pogrubieniem zaznaczenia. Ja wolę mieć b odpalone
+Można sortować procesy po wybranych kolumnach. Kolumny można zaznaczyć poprzez wybranie x oraz prazechodzenie między nimi za pomocą < >. Można odwrócić sortowanie za pomocą R
+Za pomocą j i J można edytować wyrównanie liczb i stringów
+Bardzo fajną opcją jest opcja v i V która przełącza procesy do widoku drzewa z dziećmi lub bez nich
+fajną opcją też może być i które pokazuje bezczynne procesy.
+u pozwala wyświetlić procesy konkretnego użytkownika
+przyciśniecię 1 pozwala zobaczyć podgląd obciążenia procesora z podziałem na wątki
+Klawisz c przełączy podgląd pełnej ścieżko do programu
+Jeżeli ustawimy sobie tymi klawiszami taki wygląd jaki nam się podoba można go zapisać w .toprc przyciskiem W

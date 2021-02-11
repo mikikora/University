@@ -1,0 +1,6 @@
+/home/mikolaj/obiektowe/lista5/zad3/zad3/zad3/bin/Debug/zad3.exe
+/home/mikolaj/obiektowe/lista5/zad3/zad3/zad3/bin/Debug/zad3.pdb
+/home/mikolaj/obiektowe/lista5/zad3/zad3/zad3/obj/x86/Debug/zad3.csprojAssemblyReference.cache
+/home/mikolaj/obiektowe/lista5/zad3/zad3/zad3/obj/x86/Debug/zad3.csproj.CoreCompileInputs.cache
+/home/mikolaj/obiektowe/lista5/zad3/zad3/zad3/obj/x86/Debug/zad3.exe
+/home/mikolaj/obiektowe/lista5/zad3/zad3/zad3/obj/x86/Debug/zad3.pdb

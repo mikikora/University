@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{CD3E1D91-DCCE-420B-BA15-9ACCDF1D6DD7}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="zad3/Program.cs">
+    <Files>
+      <File FileName="zad3/Program.cs" Line="295" Column="38" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.zad3 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

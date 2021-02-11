@@ -1,0 +1,6 @@
+run-parts pozwala uruchomić wszystkie wykonywalne pliki we wskazanym katalogu.
+dzięki opcji --test można sprawdzić jakie rzeczy zostaną uruchomione w danym folderze bez uruchamiania ich
+W ten sposób można sprawdzić komendą run-parts --test /etc/cron.daily jakie rzeczy zostaną uruchomione przez crona
+Nie możemy użyć tego programu w poprzednim zadaniu ponieważ jakbyśmy chcieli uruchomić wszystkie skrypty z .zshrc.d to musielibyśmy podać co ma je uruchomić.
+Podanie ścieżki do zsh sprawi, żę skrypt zostanie wykonany przez inną instancję zsh, a nie tą, która uruchomiłą run-parts i która chciałaby mieć te ustawienia wgrane.
+Wydaje mi się również że istnieje tutaj możliwość jakiejś nieskończonej rekurencji ale jak testowałem nie natrafiłem na taki przypadek więc nie jest dobry argument.

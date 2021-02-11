@@ -1,0 +1,35 @@
+#lang racket
+
+(require rackunit)
+
+(define (merge xs ys)
+  (define (merging xs ys res)
+    (cond
+      [(null? xs) (append res ys)]
+      [(null? ys) (append res xs)]
+      [(< (car xs) (car ys)) (merging (cdr xs) ys (append res (list (car xs))))]
+      [else (merging xs (cdr ys) (append res (list (car ys))))]))
+  (merging xs ys null))
+
+(define (split xs)
+  (let ((n (floor (/ (length xs) 2))))
+    (define (iter xs wl i)
+      (if (>= i n)
+          (cons wl xs)
+          (iter (cdr xs) (append wl (list (car xs))) (+ i 1))))
+    (iter xs null 0)))
+
+(define (merge-sort xs)
+  (cond
+    [(null? xs) xs]
+    [(null? (cdr xs)) xs]
+    [else
+     (let ((lpair (split xs)))
+       (merge
+        (merge-sort (car lpair))
+        (merge-sort (cdr lpair))))]))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;testy
+
+

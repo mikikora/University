@@ -1,0 +1,91 @@
+zbudowane
+RRUUU
+0.0002846717834472656
+zbudowane
+ULLUUUU
+0.0017235279083251953
+zbudowane
+DLULUULUU
+0.015217304229736328
+zbudowane
+LLLLDDRRRDRRULRRR
+0.07133722305297852
+zbudowane
+RRRRRRDDLLLLLLLLLUURRRR
+0.05977582931518555
+zbudowane
+URRURRUURDRD
+0.0013382434844970703
+zbudowane
+RRRDDRRRRRRRRRRRRRRDRUUURU
+0.08353900909423828
+zbudowane
+LLULLLLLLLLLUUUUULLLLLLUURRRRUUURRURDRRRRURRRRRRR
+10.765958070755005
+zbudowane
+RRDDRRDRUURRRRRRRRRRRRRRLURU
+1.0263173580169678
+zbudowane
+RRRRRRRRRRRDDRUUURRRRRUUUR
+0.03879690170288086
+zbudowane
+RRRRRRUULLLLLLUULULULD
+0.01375722885131836
+zbudowane
+ULRUDRRRRRRRRURRRRRRUULLLLLLUULUUL
+2.457075357437134
+zbudowane
+RRRRRRURRRRRRRRRULLLLULLLLLLULUUULD
+91.45098066329956
+zbudowane
+RRRRRURUUURURRRRRRRRRU
+0.0071833133697509766
+zbudowane
+LLLLDRDRRDRRRRRRLU
+1.1172754764556885
+zbudowane
+LLLLDRDDURDRDRRURURRRL
+46.390469551086426
+zbudowane
+RRURUURRRRRRUUURRRRDDDRRRDDD
+75.0954236984253
+zbudowane
+LLLLLDDDDDULLULLLL
+63.75691509246826
+Running case 1... OK!
+Running case 2... OK!
+Running case 3... OK!
+Running case 4... OK!
+Running case 5... OK!
+Running case 6... OK!
+Running case 7... OK!
+Running case 8... OK!
+Running case 9... OK!
+Running case 10... OK!
+Running case 11... OK!
+Running case 12... OK!
+Running case 13... Failed:
+Level solved, but path is too long!
+Running case 14... OK!
+Running case 15... Killing subprocess.
+Failed:
+Bad process exit status: -15
+Running case 16... Killing subprocess.
+Failed:
+Bad process exit status: -15
+Running case 17... Killing subprocess.
+Failed:
+Bad process exit status: -15
+Running case 18... OK!
+Running case 19... Failed:
+Level solved, but path is too long!
+Running case 20... OK!
+Running case 21... OK!
+
+Validation result: 16/21 cases pass.
+
+For passing cases total num_moves: 344
+For passing cases total time: 155.2994532585144
+
+Some test cases have failed. To rerun the failing cases execute:
+python validator.py --cases 13,15,16,17,19 zad5 python3 zad5.py

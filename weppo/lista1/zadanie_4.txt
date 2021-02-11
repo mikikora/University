@@ -1,0 +1,2 @@
+Dekraluję to zadanie; potrafię je zrobić.
+W obu przypadkach można to robić na zasadzie breakpointów, które ustawia się w kodzie, a następnie przy pomocy debuggera można prześledzić krok po kroku jak działa kod.

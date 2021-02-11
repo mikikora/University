@@ -1,0 +1,129 @@
+Mikołaj Korobczak
+Zadanie 9 lista 3 Metody Programowania
+
+definicje funckji, z ktorych tutaj korzystam:
+
+(define (append xs ys)
+ (if (null? xs)
+  ys
+  (cons (car xs) (append (cdr xs) ys))))
+
+(define (map f xs)
+ (if (null? xs)
+  null
+  (cons (f (car xs)) (map f (cdr xs)))))
+
+(define (filter p? xs)
+ (if (null? xs)
+  null
+  (if (p? (car xs))
+   (cons (car xs) (filter p? (cdr xs)))
+   (filter p? (cdr xs)))))
+
+Podpunkt pierwszy:
+
+(map f (append xs ys))
+
+Udownodnię, że (map f (append xs ys)) == (append (map f xs) (map f ys))
+Zrobię dowód indukcyjny względem długości listy xs, którą będę oznaczał n.
+
+a) Podstawa indukcji. Weźmy taką listę xs, że n == 0, co oznacza, że lista xs == null.
+Wtedy (map f (append xs ys)) == (map f (append null ys)). 
+Z definicji append mamy: (map f ys)
+
+Rozpiszmy teraz drugą stronę: (append (map f xs) (map f ys)) == (append (map f null) (map f ys)).
+Z definicji map: (append null (map f ys)). Z definicji append mamy: (map f ys)
+
+Z obu stron doszliśmy do wyrażenia postaci (map f ys) więc dla n == 0 zachodzi.
+
+b) Krok indukcyjny. Weźmy dowolne n i załóżmy, że dla n zachodzi równość (map f (append xs ys)) == (append (map f xs) (map f ys)) gdzie n to długość listy xs. 
+Udowodnię, że ta własność zachodzi dla listy (cons x xs) o długości n+1, dla dowolnego x != null.
+
+Rozpiszmy lewą stronę:
+(map f (append (cons x xs) ys)) to z definicji append: (map f (cons (car (cons x xs)) (append (cdr (cons x xs)) ys)))
+To po uproszczeniu daje nam: (map f (cons x (append xs ys))). 
+Z definicji map (po uproszczeniu): (cons (f x) (map f (append xs ys))).
+
+Rozpiszmy teraz prawą stronę:
+(append (map f (cons x xs)) (map f ys)). 
+Z definicji map (po uproszczeniu): (append (cons (f x ) (map f xs)) (map f ys)).
+Z definicji append: (cons (f x) (append (map f xs) (map f ys))). 
+Z założenia indukcyjnego wiemy, że (append (map f xs) (map f ys)) == (map f (append xs ys)).
+Więc dostajemy (cons (f x) (map f (append xs ys))).
+
+Po rozpisaniu lewej i prawej strony doszliśmy do tego samego wyrażenia więc obie strony są równoważne co kończy dowód. 
+
+**************************************************************************************************
+
+Podpunkt drugi:
+
+(filter p? (append xs ys))
+
+Udowodnię, że (filter p? (append xs ys)) == (append (filter p? xs) (filter p? ys))
+
+Zrobię to analogicznym dowodem do tego z pierwszego podpunktu, czyli dowodem indukcyjnym względem długości listy xs, którą będę oznaczał n.
+
+a) Podstawa indukcji. Weźmy taką listę xs, że n == 0, czyli lista xs == null.
+Wtedy mamy: (filter p? (append xs ys)) == (filter p? (append null ys)).
+Z definicji append: (filter p? ys)
+
+Rozpiszmy teraz prawą stronę:
+(append (filter p? xs) (filter p? ys)) == (append null (filter p? ys)).
+Z definicji append: (filter p? ys)
+
+Po rozpisaniu obu stron doszliśmy do tego samego wyrażenia. To znaczy, że obie strony są równoważne. 
+Czyli dla n == 0 własność zachodzi.
+
+b) Krok indukcyjny. Weźmy dowolne n i załóżmy, że dla n zachodzi równość (flter p? (append xs ys)) == (append (filter p? xs) (filter p? ys)), gdzie n to długość listy xs.
+Udowodnię, że własność ta zachodzi dla listy (cons x xs) o długości n+1, dla dowolnego x != null.
+
+Rozpatrzmy dwa przypadki:
+
+1) (p? x) == #t
+
+Zacznijmy od rozpisania lewej strony:
+(filter p? (append (cons x xs) ys)). 
+Z definicji append: (filter p? (cons (car (cons x xs)) (append (cdr (cons x xs)) ys))).
+Po uproszczeniu mamy: (filter p? (cons x (append xs ys)))
+Z defnicji filter: (cons x (filter p? (append xs ys)))
+
+Rozpiszmy teraz drugą stornę:
+(append (filter p? (cons x xs)) (filter p? ys)).
+Z definicji filter: (append (cons (car (cons x xs)) (filter p? (cdr (cons x xs)))) (filter ps? ys)) (robię tutaj założenie że (car (cons x xs)) == x a wiemy, że (p? x) == #t).
+Po uproszczeniu: (append (cons x (filter p? xs)) (filter p? ys)).
+Z definicji append: (cons x (append (filter p? xs) (filter p? ys)))
+Po skorzystaniu z założenia indukcyjnego dostajemy: (cons x (filter p? (append xs ys)))
+
+Po rozpisaniu obu stron równania doszliśmy do tego samego wyrażenia, więc obie strony równania są równoważne.
+
+2) (p? x) == #f
+
+Po rozpisaniu i uproszczeniu lewej strony (w analogiczny sposób co w przypadku pierwszym) mamy:
+(filter p? (cons x (append xs ys))).
+Z definicji filter dostajemy: (filter p? (append xs ys))
+
+Rozpiszmy teraz prawą stonę:
+(append (filter p? (cons x xs)) (filter p? ys)).
+Z definicji filter: (append (filter p? xs) (filter p? ys)).
+Z założenia indukcyjnego dostajemy: (filter p? (append xs ys)).
+
+Po rozpisaniu obu stron równania doszliśmy do tego samego wyrażenia, więc obie strony równania są równoważne.
+
+Co kończy dowód.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

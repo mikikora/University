@@ -1,0 +1,16 @@
+ps(1)
+ps - program służący do listowania aktywnych procesów
+Odpalenie samego ps wypisze wszystkie procesy działające dla danego terminala.
+ps -e wypisze listę wszystkich demonów działających w danym momencie w systemie
+ps -l wypisze działąjące procesy z wieloma dodatkowymi informacjami
+ps a wypisze wszystkie procesy we wszystkich ttys
+ps u wypisze dodatkowe informacje dotyczące procesów
+ps x wypisze wszystkie procesy, które nie dzialają na żadnym terminalu
+Ja najczęściej używam ps aux aby wypisać wszystkie procesy z wieloma przydatnymi informacjami
+
+pstree(1)
+pstree wyświetla drzewo wszystkich procesów gdzie połączenia między procesami to oczywiście ojcostwo
+przydatne flagi moim zdaniem to
+pstree -p wyświetla dodatkowo pid procesu
+pstree -g wyświetla pgid czyli id grupy procesów
+pstree -T pozwala schować wątki i pokazuje tylko procesy

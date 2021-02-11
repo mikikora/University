@@ -1,0 +1,7 @@
+"Rule: ocaml: cmo* -> cma (%=Perm )": "\157\184\242kr\011\237\143\172\029\133k\015\254\234K"
+"Rule: ocaml dependencies ml (%=Perm )": "y\145\018-\255~\006E\180\131\157\140,\220()"
+"Resource: /home/mikolaj/PF/lista7/Perm.mli": "\022\189N\128jC\231\144\214\151\031\229\\\203\141\147"
+"Rule: ocaml: ml & cmi -> cmo (%=Perm )": "\209Q\018\215\228\222Z\179\127\242\020\166\162\199pl"
+"Rule: ocaml: mli -> cmi (%=Perm )": "*\002\193\162\187\238wy@\239H\227G\224gY"
+"Rule: ocaml dependencies mli (%=Perm )": "D2|\139\\g\168\212\214;\220\145?T\220\195"
+"Resource: /home/mikolaj/PF/lista7/Perm.ml": "\190\236\134\169*\154K\207\001\026\206A\231J\003\224"

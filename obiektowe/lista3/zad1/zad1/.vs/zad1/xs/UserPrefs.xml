@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{C3FC1AC9-7945-48DC-A685-CDF7074EF461}|Default">
+  <MonoDevelop.Ide.ItemProperties.zad1 FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="zad1/EmptyStruct.cs">
+    <Files>
+      <File FileName="zad1/Program.cs" Line="1" Column="1" />
+      <File FileName="zad1/EmptyClass.cs" Line="1" Column="1" />
+      <File FileName="zad1/EmptyStruct.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

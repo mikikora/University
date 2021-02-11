@@ -1,0 +1,45 @@
+Mikołaj Korobczak
+kurs zarządzania systemem linux
+lista 6
+
+zadanie 1
+/*/
+
+zadanie 2
+Zrobiłem tak jak podano w poleceniu czyli zmieniłem nazwę katalogu gruba zgodnie z poleceniem za pomocą
+sudo mv grub grub.disabled
+co sprawiło, że podczas uruchamiania systemu wyskakiwał grub rescue. Ponieważ miałem zainstalowanego pendrive'a do instalacji archa to stwierdziłem, że spróbuję włączyć tego ponderive'a zamontować partycję ubuntu, a następnie odpalić program grub-install(8). Niestety pojawiło się mnówstwo przeszkód wiele błędów, które ostatecznie sprawiły, że nie udało mi się w ten sposób przywrócić gruba.
+Postanowiłem wtedy odpalić się z innego pendrive'a na którym miałem program instalacyjny ubuntu. Można tam włączyć wersję pokazową systemu, w której dostępna jest konsola. Za jej pomocą zamontowałem się do partycji ubuntu i jako chroot wykonałem polecenia:
+grub-install --target=x86_64-efi
+grub-mkconfig -o /boot/grub/grub.cfg
+które skutecznie i bezproblemowo naprawiły gruba.
+Podczas różnych prób i testów przy naprawie gruba przydatne okazało się nauczyć jak w grub rescue zbootować się na zainstalowany system jeżeli wie się gdzie on jest.
+Można to zrobić danymi poleceniami:
+ls - pozwala zobaczyć dostępne lokalizacje. Tam wybrałem partycję na której wiedziałem, że znajduje się ubuntu (hd1,gpt5)
+set root=(hd1,gpt5)
+linux /boot/vmlinux(wersja, której nie pamiętam klikałem tab i się wstawiała reszta) root=/dev/sda1
+initrd /boot/initrd.img(tak jak wyżej)
+boot
+
+zadanie 3
+Każdy plik w systemie linuxowym ma oznaczenia rwx dla poszczególnych grup użytkowników.
+Są trzy sposoby dostępu do poliku oznaczane przez 3 litery
+r - dostęp do odczytu
+w - dostęp do zapisu do pliku
+x - dostęp do wykonywania pliku.
+Zezwolenia są zapisywane w trzech blokach oznaczających kolejno prawa właściciela, grupy, pozostałych.
+Oznacza to, że przykładowo plik z prawami:
+-rwxrw-r-- byłby plikiem który może być odczytywany i modyfikowany przez właściciela i jego grupę. Ponadto właściciel może wykonywać plik. Wszyscy pozostali mogą tylko odczytać ten plik.
+Pierwszy znak oznacza czy plik jest plikiem czy katalogiem (katalog oznaczany przez d)
+Program, który służy do modyfikacji trybu dostępu jest chmod(1)
+Można to zrobić przez oznaczanie praw dostępu przez cyfry binarne (rw- = 110 = 6) czyli np chmod 764 byłoby stworzeniem praw -rwxrw-r--
+Innym psosobem będzie używanie oznaczeń literowych np chmod +x plik oznacza przyznanie (domyślnie właścicielowi) praw do wykonywania
+chmod o+w nadaje prawa pozostałym osobą prawa do zapisu do pliku.
+Tak więc aby przykładowo stworzyć katalog z takimi uprawnieniami, że użytkownik może w nim stworzyć swoje pliki, ale nie będzie mógł przeczytać jakie pliki są w danym katalogu to uprawnienia wx. Jeżeli więc chcemy, aby osoby z naszej grupy miały takie prawa do naszego folderu użyjemy polecenia chmod 730 katalog.
+
+
+zdanie 4
+/*/
+
+zdanie 5
+/*/

@@ -1,0 +1,9 @@
+Używam na codzień zsh (głównie ze względu na to, żę mam na nim ustawione kolory ładne, a na bashu nie)
+Mój plik .zshrc nie znajduje się w katalogu domowym tylko w ~/.config/zsh/.zshrc
+Aby wykonać to zadanie utworzyłem nowy folder ~/.config/zsh/.zshrc.d i porozdzielałem to co znajdowało się w pliku .zshrc na kilka pików nazywanych *.zshrc
+W samym pliku .zshrc zostawiłem tylko komendy:
+
+for file in ~/.config/zsh/.zshrc.d/*.zshrc
+do
+    source $file
+done

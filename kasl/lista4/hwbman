@@ -1,0 +1,112 @@
+.TH hwb 1 "2.04.2020" "version 1.0"
+.SH NAME
+hwb - hello world bash
+.SH SYNOPSIS
+.B hwb
+[
+.I OPTIONS
+]...
+.IR ARGS ...
+.SH DESCRIPTION
+.I hwb
+is a small program to print initial greeting known to every programmer. There is a tradition among programists that their first program should print
+.B "Hello, world!"
+to the screen.
+.B hwb
+can print this messange as well as other greetings.
+.SH OPTIONS
+.I hwb
+can interprate following options when invoked:
+.PP
+.PD 0
+.TP 10
+.B -c, --capitalize
+When
+.B -c
+option is present, then from all
+.I ARGS
+their first letter will be capitalized. When
+.B -w
+option is presen, it will capitalise also
+.I w
+letter (see
+.B -w
+option).
+.TP
+.B --color=\fIalways|auto|never \f
+colorize the output (default is
+.IR auto );
+more info below.
+.TP
+.B -g \fITEXT\f , \fB--greeting=\fITEXT\f
+When
+.B -g
+is present, all greeting words (Default
+.IR Hello )
+will be replaced with word given in
+.I TEXT
+.TP
+.B -h, --help
+outputs simple help on the screen and exits. All other
+.I ARGS
+will be ignored.
+.TP
+.B -v, --version
+outputs version info and exits. All
+.I ARGS
+will be ignored.
+.TP
+.B -w, --world
+adds aditional line at the end with
+.I world
+as an argument.
+.PP
+Coloring aply only to
+.I ARGS
+therefore greeting (default or providedone) won't be collorized. If
+.BR color =\fIalways\f
+collored output will always be printed.
+When
+.BR color =\fIauto\f
+output will be collorized unless standard output isn't connected to terminal.
+When
+.BR color =\fInever\f
+nothing will be collorized.
+.SH EXIT STATUS
+.PP
+.PD 0
+.TP 10
+0
+if OK,
+.TP
+1
+if problems
+.SH EXAMPLE
+.PP
+.PD 0
+.TP
+.TP
+.I hwb john
+will create output
+.PP
+.PD
+.I Hello, john!
+.PP
+.TP
+.PD 0
+.I hwb -cw mike steve
+will create output
+.PP
+.I Hello, Mike!
+.PP
+.I Hello, Steve!
+.PP
+.I Hello, World!
+.SH AUTHORS
+Written by Mikołaj Korobczak
+.SH SEE ALSO
+.BR echo (1)
+.BR getopt (1)
+.BR sed (1)
+.BR grep (1)
+.I Kurs administrowania systemem linux

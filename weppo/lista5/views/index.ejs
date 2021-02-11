@@ -1,0 +1,41 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="POST">
+        
+        <div>
+            Name: <input type="text" name="name" value='<%= name %>' />
+        </div>
+        <div>
+            Surrname: <input type="text" name="surrname" value='<%= surrname %>' />
+        </div>
+        <div>
+            Subj: <input type="text" name="subj" value='<%= subj %>' />
+        </div>
+        <% for (var i = 1; i <= 10; i++) { %>
+            <div>
+                S <%= i %>: <input type="number" name="s<%= i %>" />
+            </div>
+        <% } %>
+        <div>
+            <button>Prześlij odpowiedź</button>
+        </div>
+        <% if (locals.message) { %>
+            <%= message %>
+        <% } %>
+
+
+    </form>
+
+
+</body>
+
+</html>

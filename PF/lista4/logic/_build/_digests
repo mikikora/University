@@ -1,0 +1,8 @@
+"Rule: ocaml: mllib & cmo* -> cma (%=logic )": "\000k\166\012\147\007\012\180\209\196\139\150\028\171z\183"
+"Resource: /home/mikolaj/PF/lista4/logic/logic.mli": "\176\157\221_\014\166\th\218\247\246\232\181\210\158\014"
+"Rule: ocaml dependencies ml (%=logic )": "k\029\225\158\177\030\197\153\190%\184\148o\2001*"
+"Resource: /home/mikolaj/PF/lista4/logic/logic.mllib": ">\208|K\146\191E\166@\251\011\165a\167\209I"
+"Rule: ocaml: ml & cmi -> cmo (%=logic )": "\138di\1680\212,\235\138.\214\007I\158\167\134"
+"Resource: /home/mikolaj/PF/lista4/logic/logic.ml": "wdA\131\028\158\134\247\"\223\232<\252\031\245\239"
+"Rule: ocaml: mli -> cmi (%=logic )": "\165c\215\229@\210\1398\251g\165o\007\198\205\142"
+"Rule: ocaml dependencies mli (%=logic )": "\022\132\2044\027\141\173%\152D\247\193|\172N\031"
